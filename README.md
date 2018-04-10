@@ -169,10 +169,3 @@ There are 5 filtering options available.
 1. powerstate
 
 Read ["Microsoft Azure Guide"](http://docs.ansible.com/ansible/latest/scenario_guides/guide_azure.html) for more information about azure dynamic inventory. 
-
-# Combine with [Packer](https://www.packer.io/)
-
-You can make a [custom manage image](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/create-vm-generalized-managed) automatically with Packer. If you need to maintain a fresh VM image, you can use Packer and Ansible together. 
-
-
-
