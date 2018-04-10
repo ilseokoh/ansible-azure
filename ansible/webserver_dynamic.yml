@@ -1,0 +1,7 @@
+---
+# VMs that is tagged by service:web
+- hosts: service_web
+  gather_facts: no
+  roles:
+    - common
+    - webserver
