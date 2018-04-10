@@ -310,9 +310,12 @@
         "resources": [
             {
                 "type": "Microsoft.Compute/virtualMachines/extensions",
-                "name": "[concat(parameters('vmNamePrefix'), concat('/WinRMCustomScriptExtension', copyindex()))]",
+                "name": "[concat(concat(parameters('vmNamePrefix'), copyindex()), concat('/WinRMCustomScriptExtension', copyindex()))]",
                 "apiVersion": "2016-04-30-preview",
                 "location": "[resourceGroup().location]",
+                "dependsOn": [
+                  "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmNamePrefix'), copyindex()))]"
+                ],
                 "properties": {
                   "publisher": "Microsoft.Compute",
                   "type": "CustomScriptExtension",
@@ -367,11 +370,10 @@
       {
         "apiVersion": "2015-05-01-preview",
         "type": "Microsoft.Network/networkInterfaces",
-        "name": "[concat(parameters('nicNamePrefix'), 'database')]",
+        "name": "DatabaseVMNIC",
         "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
-          "[concat('Microsoft.Network/loadBalancers/', parameters('lbName'))]"
         ],
         "properties": {
           "ipConfigurations": [
@@ -381,40 +383,33 @@
                 "privateIPAllocationMethod": "Dynamic",
                 "subnet": {
                   "id": "[variables('backendSubnetRef')]"
-                },
-                "loadBalancerBackendAddressPools": [
-                  {
-                    "id": "[concat(variables('lbID'), '/backendAddressPools/BackendPool1')]"
-                  }
-                ],
-                "loadBalancerInboundNatRules": [
-                  {
-                    "id": "[concat(variables('lbID'),'/inboundNatRules/RDP-VM', copyindex())]"
-                  }
-                ]
+                }
               }
             }
           ]
         }
       },
-      { 
+      {
         "apiVersion": "2016-04-30-preview",
         "type": "Microsoft.Compute/virtualMachines",
-        "name": "[concat(parameters('vmNamePrefix'), 'Database')]",
+        "name": "DatabaseVM",
         "tags": {
             "service": "database"
         },
         "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]",
-          "[concat('Microsoft.Network/networkInterfaces/', parameters('nicNamePrefix'), 'database')]"
+          "[concat('Microsoft.Network/networkInterfaces/', 'DatabaseVMNIC')]"
         ],
         "resources": [
             {
                 "type": "Microsoft.Compute/virtualMachines/extensions",
-                "name": "[[concat(parameters('vmNamePrefix'), 'Database')],'/WinRMCustomScriptExtension')]",
+                "name": "[concat('DatabaseVM','/WinRMCustomScriptExtension')]",
                 "apiVersion": "2016-04-30-preview",
                 "location": "[resourceGroup().location]",
+                "dependsOn": [
+                  "[concat('Microsoft.Compute/virtualMachines/', 'DatabaseVM')]"
+                ],
                 "properties": {
                   "publisher": "Microsoft.Compute",
                   "type": "CustomScriptExtension",
@@ -451,7 +446,7 @@
           "networkProfile": {
             "networkInterfaces": [
               {
-                "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicNamePrefix'),'database'))]"
+                "id": "[resourceId('Microsoft.Network/networkInterfaces','DatabaseVMNIC')]"
               }
             ]
           },

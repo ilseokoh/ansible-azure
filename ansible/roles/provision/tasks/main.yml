@@ -15,15 +15,15 @@
       dnsNameforLBIP:
         value: "ansibleweb123"
       vmNamePrefix: 
-        value: "AVM"
+        value: "WebServerVM"
       lbName: 
         value: "WebLB"
       nicNamePrefix:
-        value: "anic"
+        value: "WebServernic"
       publicIPAddressName: 
         value: "WebPublicIP"
       vnetName: 
-        value: "AVNet"
+        value: "AnsibleVNet"
       vmSize: 
         value: "Standard_D2s_v3"
     template: "{{ lookup('file','../armtemplate/azuredeploy.json') | from_json }}"
