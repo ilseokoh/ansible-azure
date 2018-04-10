@@ -4,10 +4,7 @@
         "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
         "tenant_id": "{{env `ARM_TENANT_ID}}",
         "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
-        "object_id": "{{env `ARM_OJBECT_ID`}}",
-        "custom_managed_image_resource_group_name": "{{env `ARM_CUSTOM_IMAGE_RG_NAME`}}",
-        "custom_managed_image_name": "{{env `ARM_CUSTOM_IMAGE_NAME`}}",
-        "sas_token": ""
+        "object_id": "{{env `ARM_OBJECT_ID`}}"
     },
     "builders": [
         {
@@ -19,12 +16,8 @@
             "subscription_id": "{{user `subscription_id`}}",
             "object_id": "{{user `object_id`}}",
 
-            "managed_image_resource_group_name": "RG-krz-MGMT",
+            "managed_image_resource_group_name": "PackerImageGroup",
             "managed_image_name": "webserver-image-{{isotime \"2006-01-02\"}}_{{isotime \"03-04-05\"}}", 
-
-            "azure_tags": {
-                "latest-image": "true"
-            },
 
             "location": "Korea South",
             "vm_size": "Standard_D2s_v3",
@@ -33,7 +26,6 @@
             "image_publisher": "MicrosoftWindowsServer",
             "image_offer": "WindowsServer",
             "image_sku": "2016-Datacenter",
-
 
             "communicator": "winrm",
             "winrm_use_ssl": "true",
