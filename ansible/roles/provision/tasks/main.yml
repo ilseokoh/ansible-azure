@@ -1,0 +1,41 @@
+---
+# Create or update a template deployment based on uris using parameter and template links
+- name: Create Azure Deploy
+  azure_rm_deployment:
+    state: present
+    location: koreasouth
+    resource_group_name: AnsibleVMGroup
+    parameters:
+      storageAccountName:
+        value: "avmstoragedig123"
+      adminUsername: 
+        value: "ansibleuser"
+      adminPassword:
+        value: "Ansible!3245678"
+      dnsNameforLBIP:
+        value: "ansibleweb123"
+      vmNamePrefix: 
+        value: "AVM"
+      lbName: 
+        value: "WebLB"
+      nicNamePrefix:
+        value: "anic"
+      publicIPAddressName: 
+        value: "WebPublicIP"
+      vnetName: 
+        value: "AVNet"
+      vmSize: 
+        value: "Standard_D2s_v3"
+    template: "{{ lookup('file','../armtemplate/azuredeploy.json') | from_json }}"
+  tags:
+    - create
+  delegate_to: 127.0.0.1
+
+# Destroy a template deployment
+- name: Destroy Azure Deploy
+  azure_rm_deployment:
+    state: absent
+    resource_group_name: RG-krz-m-world-central-w{{ '%02d'|format(worldnum|int) }}-VM
+  tags:
+    - destroy
+  delegate_to: 127.0.0.1
