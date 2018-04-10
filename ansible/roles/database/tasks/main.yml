@@ -9,5 +9,20 @@
     name: mysql
     state: present
 
-- name: Start MySQL
-  win_command: "C:\tools\mysql\current\bin\mysqld --install"
+- name: Firewall rule to allow MySQL on TCP port 3306
+    name: MySQL 3306
+    localport: 3306
+    action: allow
+    direction: in
+    protocol: tcp
+    state: present
+    enabled: yes
+
+- name: Install MySQL as a windows service
+  win_command: C:\tools\mysql\current\bin\mysqld --install
+
+- name: start mysql service 
+  win_service: 
+      name: MySQL
+      start_mode: auto
+      state: started
