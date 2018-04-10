@@ -373,7 +373,7 @@
         "name": "DatabaseVMNIC",
         "location": "[resourceGroup().location]",
         "dependsOn": [
-          "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]",
+          "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
         ],
         "properties": {
           "ipConfigurations": [

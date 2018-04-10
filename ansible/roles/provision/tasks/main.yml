@@ -7,19 +7,19 @@
     resource_group_name: AnsibleVMGroup
     parameters:
       storageAccountName:
-        value: "avmstoragedig123"
+        value: "avmstoragedig"
       adminUsername: 
         value: "ansibleuser"
       adminPassword:
-        value: "Ansible!3245678"
+        value: "Ansible!2345678"
       dnsNameforLBIP:
         value: "ansibleweb123"
       vmNamePrefix: 
-        value: "WebServerVM"
+        value: "WebVM"
       lbName: 
         value: "WebLB"
       nicNamePrefix:
-        value: "WebServernic"
+        value: "webservernic"
       publicIPAddressName: 
         value: "WebPublicIP"
       vnetName: 
@@ -35,7 +35,7 @@
 - name: Destroy Azure Deploy
   azure_rm_deployment:
     state: absent
-    resource_group_name: RG-krz-m-world-central-w{{ '%02d'|format(worldnum|int) }}-VM
+    resource_group_name: AnsibleVMGroup
   tags:
     - destroy
   delegate_to: 127.0.0.1
