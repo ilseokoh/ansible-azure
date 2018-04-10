@@ -1,5 +1,8 @@
 ---
+- name: Install Chocolatey
+  win_shell: 'Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))'
+    
 - name: Ensure notepad++ is installed using chocolatey
   win_chocolatey:
-    name: notepadplusplus
+    name: dotnet4.7.1
     state: present
