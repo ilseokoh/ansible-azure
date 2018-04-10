@@ -1,0 +1,5 @@
+---
+- name: Ensure notepad++ is installed using chocolatey
+  win_chocolatey:
+    name: notepadplusplus
+    state: present
