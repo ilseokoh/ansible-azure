@@ -1,7 +1,6 @@
 ---
 # VMs that is tagged by service:database
 - hosts: service_database
-  gather_facts: no
   roles:
     - common
     - database
