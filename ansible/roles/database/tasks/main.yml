@@ -19,8 +19,5 @@
     state: present
     enabled: yes
 
-- name: Setup mysql root password 
-  win_command: C:\tools\mysql\current\bin\mysqladmin -u root -p oldpassword mysql!234
-
 - name: Install MySQL as a windows service
   win_command: C:\tools\mysql\current\bin\mysqld --install
