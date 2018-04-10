@@ -1,4 +1,9 @@
 ---
+- name: install visual c++ redistributable 2013
+  win_chocolatey:
+    name: vcredist2013
+    state: present
+
 - name: Install mysql database
   win_chocolatey:
     name: mysql
