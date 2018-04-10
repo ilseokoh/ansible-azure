@@ -5,6 +5,6 @@ all:
       hosts:
         10.10.0.4:
         10.10.0.5:
-    database:
+    db:
       hosts: 
         10.10.1.4:
