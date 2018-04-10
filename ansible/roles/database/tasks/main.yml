@@ -10,7 +10,8 @@
     state: present
 
 - name: Firewall rule to allow MySQL on TCP port 3306
-    name: MySQL 3306
+  win_firewall_rule:
+    name: MySQL_3306
     localport: 3306
     action: allow
     direction: in
