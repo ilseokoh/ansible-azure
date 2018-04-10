@@ -45,7 +45,7 @@
         },
         {
             "type": "ansible",
-            "playbook_file": "../ansible/webserver.yml"
+            "playbook_file": "../ansible/webservers.yml"
         }
     ],
     "post-processors": []
