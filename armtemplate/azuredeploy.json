@@ -410,7 +410,7 @@
         "location": "[resourceGroup().location]",
         "dependsOn": [
           "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountName'))]",
-          "[concat('Microsoft.Network/networkInterfaces/', parameters('nicNamePrefix'), copyindex())]"
+          "[concat('Microsoft.Network/networkInterfaces/', parameters('nicNamePrefix'), 'database')]"
         ],
         "resources": [
             {
@@ -419,7 +419,7 @@
                 "apiVersion": "2016-04-30-preview",
                 "location": "[resourceGroup().location]",
                 "dependsOn": [
-                  "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmNamePrefix'), 'Database'))]"
+                  "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmNamePrefix'), 'database'))]"
                 ],
                 "properties": {
                   "publisher": "Microsoft.Compute",
@@ -439,7 +439,7 @@
             "vmSize": "[parameters('vmSize')]"
           },
           "osProfile": {
-            "computerName": "[concat(parameters('vmNamePrefix'), copyIndex())]",
+            "computerName": "[concat(parameters('vmNamePrefix'), 'database')]",
             "adminUsername": "[parameters('adminUsername')]",
             "adminPassword": "[parameters('adminPassword')]"
           },
@@ -457,7 +457,7 @@
           "networkProfile": {
             "networkInterfaces": [
               {
-                "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicNamePrefix'),copyindex()))]"
+                "id": "[resourceId('Microsoft.Network/networkInterfaces',concat(parameters('nicNamePrefix'),'database'))]"
               }
             ]
           },
