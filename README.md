@@ -1,5 +1,5 @@
 # ansible-azure
-Ansible + Azure samples: Azure dynamic inventory, ARM Template, Packer
+Ansible + Azure samples: Azure dynamic inventory, ARM Template
 
 # Provision the infrastructure on Azure
 
