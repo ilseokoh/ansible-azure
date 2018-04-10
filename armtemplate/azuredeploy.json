@@ -310,7 +310,7 @@
         "resources": [
             {
                 "type": "Microsoft.Compute/virtualMachines/extensions",
-                "name": "[[concat(parameters('vmNamePrefix'), copyindex())],'/WinRMCustomScriptExtension')]",
+                "name": "[concat(parameters('vmNamePrefix'), concat('/WinRMCustomScriptExtension', copyindex()))]",
                 "apiVersion": "2016-04-30-preview",
                 "location": "[resourceGroup().location]",
                 "dependsOn": [
