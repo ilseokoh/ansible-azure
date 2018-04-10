@@ -19,6 +19,25 @@ Prerequisite for this command.
 ```
 $ cd ansible
 $ ansible-playbook provision.yml --tags create
+ [WARNING]: Unable to parse /etc/ansible/hosts as an inventory source
+
+ [WARNING]: No inventory was parsed, only implicit localhost is available
+
+ [WARNING]: Could not match supplied host pattern, ignoring: all
+
+ [WARNING]: provided hosts list is empty, only localhost is available
+
+
+PLAY [127.0.0.1] ****************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************
+ok: [127.0.0.1]
+
+TASK [provision : Create Azure Deploy] ******************************************************************************
+changed: [127.0.0.1 -> 127.0.0.1]
+
+PLAY RECAP **********************************************************************************************************
+127.0.0.1                  : ok=2    changed=1    unreachable=0    failed=0
 ```
 
 # Run ansible playbook with static inventory
