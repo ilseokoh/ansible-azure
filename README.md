@@ -9,7 +9,7 @@ First, we can create 3 VMs, virtual network, availability set and load balancer 
 
 2 check-points of [armtemplae/azuredeploy.json](/armtemplate/azuredeploy.json)
 1. Each VM has it's own tag. (service:web, service:database) It's useful when we're using dynamic inventory. You can set up a filter with tags. 
-1. Excute powershell script with "custom script extention". [The script](https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1) enables  WinRM.
+1. Execute powershell script with "custom script extension". [The script](https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1) enables WinRM.
 
 Prerequisite for this command. 
 1. [Use portal to create an Azure Active Directory application and service principal that can access resources](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal)
