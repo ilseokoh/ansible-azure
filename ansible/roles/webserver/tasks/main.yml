@@ -8,3 +8,9 @@
     template:
       src: iisstart.j2
       dest: c:\inetpub\wwwroot\iisstart.htm
+
+  - name: Ensure IIS service is running
+    win_service: 
+      name: W3SVC
+      start_mode: auto
+      state: started

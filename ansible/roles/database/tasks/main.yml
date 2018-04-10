@@ -3,3 +3,6 @@
   win_chocolatey:
     name: mysql
     state: present
+
+- name: Start MySQL
+  win_command: "C:\tools\mysql\current\bin\mysqld --install"
